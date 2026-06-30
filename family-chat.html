@@ -216,6 +216,13 @@ body::before{content:"";position:fixed;inset:-30%;z-index:-1;
 .call-ctrl.accept{background:#34C759;}
 .call-ctrl.off{background:#fff;color:#04140C;}
 
+/* welcome toast */
+#welcome-toast{position:fixed;top:26px;left:50%;transform:translateX(-50%) translateY(-24px);z-index:120;
+  background:var(--glass-strong);border:1px solid rgba(43,224,122,0.45);border-radius:100px;padding:13px 28px;
+  color:#fff;font-size:16.5px;font-weight:700;backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);
+  box-shadow:0 14px 38px rgba(0,0,0,0.45),0 0 22px rgba(43,224,122,0.25);opacity:0;transition:all 0.45s cubic-bezier(.2,.8,.2,1);pointer-events:none;}
+#welcome-toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+
 /* PIN lock */
 .pinlock{position:fixed;inset:0;z-index:200;display:flex;align-items:center;justify-content:center;background:linear-gradient(160deg,#06140d,#03100c);}
 .pinlock.hidden{display:none!important;}
@@ -763,6 +770,9 @@ body.light .event-form input, body.light .event-form select, body.light .list-ad
   </div>
 </div>
 
+<!-- WELCOME TOAST -->
+<div id="welcome-toast"></div>
+
 <!-- CALL MODAL -->
 <div id="call-modal" class="modal hidden">
   <div class="call-box">
@@ -992,6 +1002,13 @@ sb.auth.onAuthStateChange((_event, session)=>{
   if(session && session.user) startApp(session.user);
 })();
 
+function showWelcome(name){
+  const t = $('welcome-toast');
+  t.textContent = `🌟 حيّاك الله ${name}`;
+  t.classList.add('show');
+  setTimeout(()=> t.classList.remove('show'), 3800);
+}
+
 let started = false;
 async function startApp(user){
   if(started) return; started = true;
@@ -1016,6 +1033,7 @@ async function startApp(user){
   $('me-name').textContent = me.display_name;
   $('me-av').innerHTML = avHTML(me, 38);
   $('app-av').innerHTML = grpAvHTML(50);
+  showWelcome(me.display_name);
   $('nav-me').innerHTML = avHTML(me, 42);
   $('composer-av').innerHTML = avHTML(me, 46);
 
