@@ -216,6 +216,18 @@ body::before{content:"";position:fixed;inset:-30%;z-index:-1;
 .call-ctrl.accept{background:#34C759;}
 .call-ctrl.off{background:#fff;color:#04140C;}
 
+/* أيقونات SVG */
+svg.ic{display:block;stroke-linecap:round;stroke-linejoin:round;}
+.nav-btn svg.ic{width:25px;height:25px;}
+.iicon svg.ic{width:24px;height:24px;}
+#send-btn svg.ic{width:23px;height:23px;}
+.ch-btn svg.ic{width:22px;height:22px;}
+.like-btn svg.ic,.cmt-btn svg.ic,.rt-btn svg.ic{width:21px;height:21px;}
+.sb-foot-btn svg.ic{width:18px;height:18px;}
+.comp-icon svg.ic{width:23px;height:23px;}
+#ai-send svg.ic{width:20px;height:20px;}
+.post-actions button{align-items:center;}
+
 /* welcome toast */
 #welcome-toast{position:fixed;top:26px;left:50%;transform:translateX(-50%) translateY(-24px);z-index:120;
   background:var(--glass-strong);border:1px solid rgba(43,224,122,0.45);border-radius:100px;padding:13px 28px;
@@ -647,8 +659,8 @@ body.light .event-form input, body.light .event-form select, body.light .list-ad
           </div>
           <div class="composer-actions">
             <div style="display:flex;gap:15px;align-items:center">
-              <label class="comp-icon">🖼️ <input id="post-file" type="file" accept="image/*" hidden></label>
-              <span class="comp-icon" id="poll-btn" title="استطلاع رأي">📊</span>
+              <label class="comp-icon" id="post-img-btn" title="صورة"><span class="ci"></span><input id="post-file" type="file" accept="image/*" hidden></label>
+              <span class="comp-icon" id="poll-btn" title="استطلاع رأي"></span>
             </div>
             <button id="post-btn" class="post-btn">نشر</button>
           </div>
@@ -856,6 +868,45 @@ const SB_URL = "https://oqsoliiyucizvxpkjbpj.supabase.co";
 const SB_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9xc29saWl5dWNpenZ4cGtqYnBqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI0MTI1MTMsImV4cCI6MjA5Nzk4ODUxM30.d-J2_5ran86X9tMP1Bir2yPA-sm8gqvH9P_ICjlyoGg";
 const GROUP_ID = "00000000-0000-0000-0000-000000000001";
 const EMOJIS = ["👨","👩","👦","👧","👴","👵","🧔","👨‍🦰","🧕","👨‍💼","👩‍💼","😊"];
+
+// ── أيقونات SVG (خطّية عصرية مثل التطبيقات الحقيقية) ──
+const _s = 'fill="none" stroke="currentColor" stroke-width="2"';
+const _f = 'fill="currentColor" stroke="none"';
+const ICON = {
+  poll:`<svg class="ic" viewBox="0 0 24 24" ${_s}><line x1="6" y1="20" x2="6" y2="12"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="18" y1="20" x2="18" y2="9"/></svg>`,
+  chat:`<svg class="ic" viewBox="0 0 24 24" ${_s}><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>`,
+  home:`<svg class="ic" viewBox="0 0 24 24" ${_s}><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>`,
+  calendar:`<svg class="ic" viewBox="0 0 24 24" ${_s}><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>`,
+  image:`<svg class="ic" viewBox="0 0 24 24" ${_s}><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>`,
+  sparkle:`<svg class="ic" viewBox="0 0 24 24" ${_s}><path d="M12 3v4M12 17v4M3 12h4M17 12h4M5.6 5.6l2.8 2.8M15.6 15.6l2.8 2.8M18.4 5.6l-2.8 2.8M8.4 15.6l-2.8 2.8"/></svg>`,
+  paperclip:`<svg class="ic" viewBox="0 0 24 24" ${_s}><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>`,
+  pin:`<svg class="ic" viewBox="0 0 24 24" ${_s}><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>`,
+  mic:`<svg class="ic" viewBox="0 0 24 24" ${_s}><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>`,
+  send:`<svg class="ic" viewBox="0 0 24 24" ${_s}><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>`,
+  stop:`<svg class="ic" viewBox="0 0 24 24" ${_f}><rect x="6" y="6" width="12" height="12" rx="2"/></svg>`,
+  phone:`<svg class="ic" viewBox="0 0 24 24" ${_s}><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>`,
+  video:`<svg class="ic" viewBox="0 0 24 24" ${_s}><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>`,
+  wallpaper:`<svg class="ic" viewBox="0 0 24 24" ${_s}><circle cx="13.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="10.5" r="2.5"/><circle cx="8.5" cy="7.5" r="2.5"/><circle cx="6.5" cy="12.5" r="2.5"/><path d="M12 2a10 10 0 1 0 0 20 1.5 1.5 0 0 0 1.5-1.5 1.5 1.5 0 0 1 1.5-1.5h1.8a4.2 4.2 0 0 0 4.2-4.2A10 10 0 0 0 12 2z"/></svg>`,
+  bell:`<svg class="ic" viewBox="0 0 24 24" ${_s}><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>`,
+  bellOff:`<svg class="ic" viewBox="0 0 24 24" ${_s}><path d="M13.73 21a2 2 0 0 1-3.46 0"/><path d="M18.63 13A17.89 17.89 0 0 1 18 8"/><path d="M6.26 6.26A5.86 5.86 0 0 0 6 8c0 7-3 9-3 9h14"/><path d="M18 8a6 6 0 0 0-9.33-5"/><line x1="1" y1="1" x2="23" y2="23"/></svg>`,
+  heart:`<svg class="ic" viewBox="0 0 24 24" ${_s}><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>`,
+  heartFill:`<svg class="ic" viewBox="0 0 24 24" ${_f}><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>`,
+  comment:`<svg class="ic" viewBox="0 0 24 24" ${_s}><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>`,
+  repeat:`<svg class="ic" viewBox="0 0 24 24" ${_s}><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>`,
+  sun:`<svg class="ic" viewBox="0 0 24 24" ${_s}><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>`,
+  moon:`<svg class="ic" viewBox="0 0 24 24" ${_s}><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>`,
+  logout:`<svg class="ic" viewBox="0 0 24 24" ${_s}><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>`
+};
+function paintIcons(){
+  const map = { chat:'chat', feed:'home', hub:'calendar', album:'image', ai:'sparkle' };
+  document.querySelectorAll('.nav-btn[data-view]').forEach(b=>{ const k=map[b.dataset.view]; if(k) b.innerHTML = ICON[k]; });
+  if($('img-btn')) $('img-btn').innerHTML = ICON.image;
+  if($('doc-btn')) $('doc-btn').innerHTML = ICON.paperclip;
+  if($('loc-btn')) $('loc-btn').innerHTML = ICON.pin;
+  if($('poll-btn')) $('poll-btn').innerHTML = ICON.poll;
+  if($('ai-send')) $('ai-send').innerHTML = ICON.send;
+  const pil = document.querySelector('#post-img-btn .ci'); if(pil) pil.innerHTML = ICON.image;
+}
 
 const sb = createClient(SB_URL, SB_KEY, {
   auth: { persistSession:true, autoRefreshToken:true, storageKey:'family-chat-auth' }
@@ -1294,9 +1345,9 @@ function renderHeader(){
       <div class="ch-sub">${esc(sub)}</div>
     </div>
     <div class="ch-actions">
-      ${c.type==='direct'?`<button class="ch-btn" id="call-voice" title="مكالمة صوتية">📞</button><button class="ch-btn" id="call-vid" title="مكالمة فيديو">📹</button>`:''}
-      <button class="ch-btn" id="bg-btn" title="خلفية الدردشة">🎨</button>
-      <button class="ch-btn" id="mute-btn" title="كتم الإشعارات">${mutedSet.has(c.id)?'🔕':'🔔'}</button>
+      ${c.type==='direct'?`<button class="ch-btn" id="call-voice" title="مكالمة صوتية">${ICON.phone}</button><button class="ch-btn" id="call-vid" title="مكالمة فيديو">${ICON.video}</button>`:''}
+      <button class="ch-btn" id="bg-btn" title="خلفية الدردشة">${ICON.wallpaper}</button>
+      <button class="ch-btn" id="mute-btn" title="كتم الإشعارات">${mutedSet.has(c.id)?ICON.bellOff:ICON.bell}</button>
     </div>`;
   $('bg-btn').onclick = toggleBgMenu;
   $('mute-btn').onclick = ()=> toggleMute(c.id);
@@ -1566,7 +1617,8 @@ function subscribeRealtime(){
 // ═══════════════════════════════════════════════════════════════════
 function bindInput(){
   const ta = $('msg-input');
-  const updateBtn = ()=> $('send-btn').textContent = ta.value.trim() ? '➤' : '🎙️';
+  const updateBtn = ()=> $('send-btn').innerHTML = ta.value.trim() ? ICON.send : ICON.mic;
+  updateBtn();
   $('send-btn').onclick = ()=>{ if(ta.value.trim()) send({}); else toggleRecord(); };
   ta.addEventListener('keydown', e=>{
     if(e.key==='Enter' && !e.shiftKey){ e.preventDefault(); send({}); }
@@ -1608,7 +1660,7 @@ async function send(extra){
   if(!txt && !extra.image_url && !extra.audio_url && !extra.file_url && !extra.content) return;
   const row = { conversation_id:activeConv.id, sender_id:me.id, content:txt||null,
                 reply_to: replyTo? replyTo.id : null, ...extra };
-  ta.value=''; ta.style.height='auto'; $('send-btn').textContent='🎙️';
+  ta.value=''; ta.style.height='auto'; $('send-btn').innerHTML=ICON.mic;
   cancelReply();
 
   const { data, error } = await sb.from('messages').insert(row).select().single();
@@ -1642,7 +1694,7 @@ async function toggleRecord(){
     mediaRec.ondataavailable = e=>{ if(e.data.size) recChunks.push(e.data); };
     mediaRec.onstop = async ()=>{
       stream.getTracks().forEach(t=>t.stop());
-      clearInterval(recTimer); $('rec-bar').classList.add('hidden'); $('send-btn').textContent='🎙️';
+      clearInterval(recTimer); $('rec-bar').classList.add('hidden'); $('send-btn').innerHTML=ICON.mic;
       if(mediaRec._cancelled){ return; }
       const blob = new Blob(recChunks, { type:'audio/webm' });
       const path = `chat/${me.id}/${Date.now()}.webm`;
@@ -1653,7 +1705,7 @@ async function toggleRecord(){
     };
     mediaRec.start();
     recStart = Date.now();
-    $('rec-bar').classList.remove('hidden'); $('send-btn').textContent='⏹️';
+    $('rec-bar').classList.remove('hidden'); $('send-btn').innerHTML=ICON.stop;
     recTimer = setInterval(()=>{
       const s = Math.floor((Date.now()-recStart)/1000);
       $('rec-time').textContent = Math.floor(s/60)+':'+String(s%60).padStart(2,'0');
@@ -1872,13 +1924,13 @@ function renderPosts(posts){
           ${txt}${img}${pollHTML(src.id)}
           <div class="post-actions">
             <button class="like-btn ${ls.liked?'on':''}" data-like="${p.id}">
-              <span class="heart">${ls.liked?'❤️':'🤍'}</span><span>${ls.count||''}</span>
+              <span class="heart">${ls.liked?ICON.heartFill:ICON.heart}</span><span>${ls.count||''}</span>
             </button>
             <button class="cmt-btn" data-cmt="${p.id}">
-              <span>💬</span><span>${(cmtState[p.id]||[]).length||''}</span>
+              ${ICON.comment}<span>${(cmtState[p.id]||[]).length||''}</span>
             </button>
             <button class="rt-btn ${reposted?'on':''}" data-rt="${src.id}" title="إعادة نشر">
-              <span>🔁</span>
+              ${ICON.repeat}
             </button>
           </div>
           <div class="comments ${openCmts.has(p.id)?'':'hidden'}" id="cmts-${p.id}"></div>
@@ -2173,8 +2225,9 @@ function toggleTheme(){
   localStorage.setItem('theme', document.body.classList.contains('light')?'light':'dark');
   updateThemeBtn();
 }
-function updateThemeBtn(){ const b=$('theme-btn'); if(b) b.textContent = document.body.classList.contains('light') ? '🌙' : '☀️'; }
+function updateThemeBtn(){ const b=$('theme-btn'); if(b) b.innerHTML = document.body.classList.contains('light') ? ICON.moon : ICON.sun; }
 applyTheme();
+paintIcons();
 
 // ── قفل برقم سري ──
 let pinEntry = '';
