@@ -1,0 +1,12 @@
+# أسرار — لا تُرفع أبداً
+.mcp.json
+.env
+*.token
+
+# إعدادات محلية
+.claude/
+
+# نظام
+node_modules/
+.DS_Store
+Thumbs.db
