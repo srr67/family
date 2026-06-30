@@ -447,6 +447,40 @@ body.light .poll-in{color:#0E1A14;}
 .ev-del,.li-del{background:none;border:none;color:var(--muted);cursor:pointer;font-size:14px;}
 .ev-del:hover,.li-del:hover{color:#FF6B63;}
 .hub-empty{color:var(--muted);font-size:13.5px;text-align:center;padding:14px;}
+/* ═══ ساحة التحديات (جاوب غلط) ═══ */
+#view-arena{justify-content:center;overflow-y:auto;}
+.arena-wrap{width:100%;max-width:620px;border-left:1px solid var(--stroke);border-right:1px solid var(--stroke);min-height:100%;padding-bottom:40px;}
+.arena-form{display:flex;flex-direction:column;gap:10px;margin:14px 16px;background:var(--glass-strong);border:1px solid var(--stroke);border-radius:16px;padding:14px;}
+.arena-form.hidden{display:none;}
+.arena-form-tag{font-size:13px;color:var(--accent);font-weight:600;line-height:1.5;}
+.arena-form input{background:var(--glass);border:1px solid var(--stroke);border-radius:11px;padding:12px 14px;color:#fff;outline:none;font-family:inherit;font-size:15px;direction:rtl;}
+.arena-form input:focus{border-color:var(--accent);}
+body.light .arena-form input{color:#0E1A14;}
+.chal{margin:0 16px 16px;background:var(--glass);border:1px solid var(--stroke);border-radius:18px;padding:16px;backdrop-filter:blur(14px);animation:fadeUp 0.25s ease;}
+.chal-head{display:flex;align-items:flex-start;gap:11px;margin-bottom:13px;}
+.chal-ic{font-size:22px;width:46px;height:46px;display:flex;align-items:center;justify-content:center;background:var(--glass-strong);border-radius:13px;flex-shrink:0;}
+.chal-by{flex:1;min-width:0;}
+.chal-q{font-size:16.5px;font-weight:800;color:#fff;line-height:1.5;}
+body.light .chal-q{color:#0E1A14;}
+.chal-meta{color:var(--muted);font-size:12px;margin-top:3px;}
+.chal-del{background:none;border:none;color:var(--muted);cursor:pointer;font-size:14px;}
+.chal-del:hover{color:#FF6B63;}
+.ans{display:flex;align-items:center;gap:10px;padding:10px 0;border-top:1px solid var(--stroke);}
+.ans-body{flex:1;min-width:0;}
+.ans-name{font-size:11.5px;color:var(--muted);font-weight:600;display:flex;align-items:center;gap:5px;}
+.ans-text{font-size:14.5px;color:var(--text);word-break:break-word;margin-top:1px;}
+.ans.win{background:rgba(255,180,40,0.09);border-radius:13px;padding:10px 12px;border:1px solid rgba(255,180,40,0.35);margin-top:8px;}
+.vote-btn{display:flex;align-items:center;gap:5px;background:var(--glass-strong);border:1px solid var(--stroke);border-radius:100px;padding:6px 13px;cursor:pointer;color:var(--muted);font-family:inherit;font-size:13.5px;font-weight:800;flex-shrink:0;transition:all 0.15s;}
+.vote-btn.on{border-color:#FF5E8A;color:#FF5E8A;background:rgba(255,94,138,0.14);}
+.ans-del{background:none;border:none;color:var(--muted);cursor:pointer;font-size:12px;}
+.ans-del:hover{color:#FF6B63;}
+.chal-addans{display:flex;gap:8px;margin-top:13px;}
+.chal-addans input{flex:1;background:var(--glass-strong);border:1px solid var(--stroke);border-radius:100px;padding:10px 16px;color:#fff;outline:none;font-family:inherit;font-size:14px;direction:rtl;}
+.chal-addans input:focus{border-color:var(--accent);}
+body.light .chal-addans input{color:#0E1A14;}
+.chal-addans button{width:42px;height:42px;border:none;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#04140C;cursor:pointer;flex-shrink:0;display:flex;align-items:center;justify-content:center;}
+.chal-addans button svg.ic{width:19px;height:19px;}
+.arena-empty{text-align:center;color:var(--muted);padding:54px 20px;font-size:15px;line-height:1.8;}
 .list-add{display:flex;gap:8px;margin-bottom:12px;}
 .list-add input{flex:1;background:var(--glass-strong);border:1px solid var(--stroke);border-radius:100px;padding:10px 16px;color:#fff;outline:none;font-family:inherit;direction:rtl;font-size:14px;}
 .list-add button{width:42px;height:42px;background:linear-gradient(135deg,var(--accent),var(--accent2));border:none;border-radius:50%;color:#04140C;font-size:20px;cursor:pointer;flex-shrink:0;}
@@ -574,6 +608,7 @@ body.light .event-form input, body.light .event-form select, body.light .list-ad
     <button class="nav-btn" data-view="feed" title="المنشورات">🐦</button>
     <button class="nav-btn" data-view="hub" title="العائلة">📅</button>
     <button class="nav-btn" data-view="album" title="الألبوم">🖼️</button>
+    <button class="nav-btn" data-view="arena" title="ساحة التحديات">🏆</button>
     <button class="nav-btn" data-view="ai" title="المساعد الذكي">🤖</button>
     <div class="nav-spacer"></div>
     <button class="nav-btn" id="theme-btn" title="الوضع الفاتح/الغامق">🌗</button>
@@ -714,6 +749,19 @@ body.light .event-form input, body.light .event-form select, body.light .list-ad
       <div id="album-grid" class="album-grid"></div>
     </div>
   </div><!-- /view-album -->
+
+  <!-- VIEW: CHALLENGES ARENA (جاوب غلط) -->
+  <div id="view-arena" class="view hidden">
+    <div class="arena-wrap">
+      <div class="feed-header">🏆 ساحة التحديات <button id="add-arena" class="hub-add">＋ تحدي</button></div>
+      <div id="arena-form" class="arena-form hidden">
+        <div class="arena-form-tag">🤪 جاوب غلط — اكتب سؤالاً، والعائلة تجاوب غلط وأطرف إجابة تفوز!</div>
+        <input id="ar-q" placeholder="اكتب السؤال (مثال: كم عدد قارات العالم؟)" maxlength="160">
+        <button id="ar-save" class="hub-save">انشر التحدي</button>
+      </div>
+      <div id="arena-list" class="arena-list"></div>
+    </div>
+  </div><!-- /view-arena -->
 
   <!-- VIEW: AI ASSISTANT -->
   <div id="view-ai" class="view hidden">
@@ -1129,6 +1177,7 @@ async function startApp(user){
   bindGroups();
   subscribeCalls();
   bindAi();
+  bindArena();
 }
 
 async function loadProfiles(){
@@ -1731,6 +1780,7 @@ function bindNav(){
       if(v==='feed') loadFeed();
       if(v==='hub') loadHub();
       if(v==='album') loadAlbum();
+      if(v==='arena') loadArena();
     };
   });
 }
@@ -2611,6 +2661,93 @@ async function sendAi(){
   renderAi();
 }
 
+// ═══════════════════════════════════════════════════════════════════
+//  ساحة التحديات (جاوب غلط)
+// ═══════════════════════════════════════════════════════════════════
+function bindArena(){
+  $('add-arena').onclick = ()=> $('arena-form').classList.toggle('hidden');
+  $('ar-save').onclick = addArenaChallenge;
+  $('ar-q').addEventListener('keydown', e=>{ if(e.key==='Enter') addArenaChallenge(); });
+}
+async function loadArena(){
+  const { data:ch }   = await sb.from('challenges').select('*').order('created_at',{ascending:false});
+  const { data:ans }  = await sb.from('challenge_answers').select('*').order('created_at',{ascending:true});
+  const { data:votes }= await sb.from('challenge_votes').select('*');
+  const ansByCh={}, ansById={};
+  (ans||[]).forEach(a=>{ const o={...a,votes:0}; (ansByCh[a.challenge_id] ||= []).push(o); ansById[a.id]=o; });
+  const myVote={};
+  (votes||[]).forEach(v=>{ const a=ansById[v.answer_id]; if(a) a.votes++; if(v.voter_id===me.id) myVote[v.challenge_id]=v.answer_id; });
+  renderArena(ch||[], ansByCh, myVote);
+}
+function renderArena(list, ansByCh, myVote){
+  if(list.length===0){ $('arena-list').innerHTML = `<div class="arena-empty">ما فيه تحديات بعد 🤪<br>أنشئ أول تحدي «جاوب غلط» واترك العائلة تتنافس!</div>`; return; }
+  $('arena-list').innerHTML = list.map(c=>{
+    const by = profiles[c.created_by] || {display_name:'؟',avatar:'👤',color:'#888'};
+    const answers = (ansByCh[c.id]||[]).slice().sort((a,b)=> b.votes-a.votes);
+    const maxV = answers.length ? answers[0].votes : 0;
+    const mv = myVote[c.id];
+    const del = c.created_by===me.id ? `<button class="chal-del" data-chdel="${c.id}">🗑️</button>` : '';
+    const ansHtml = answers.length ? answers.map(a=>{
+      const ap = profiles[a.author_id] || {display_name:'؟',avatar:'👤',color:'#888'};
+      const win = maxV>0 && a.votes===maxV;
+      const voted = mv===a.id;
+      const adel = a.author_id===me.id ? `<button class="ans-del" data-andel="${a.id}">حذف</button>` : '';
+      return `<div class="ans ${win?'win':''}">
+        <div class="ans-av av-wrap">${avHTML(ap,34)}</div>
+        <div class="ans-body">
+          <div class="ans-name">${win?'<span>👑</span> ':''}${esc(ap.display_name)} ${adel}</div>
+          <div class="ans-text">${esc(a.content)}</div>
+        </div>
+        <button class="vote-btn ${voted?'on':''}" data-vote="${a.id}" data-vch="${c.id}">${ICON.heart}<span>${a.votes||''}</span></button>
+      </div>`;
+    }).join('') : `<div class="chal-meta" style="padding:9px 0 2px">كن أول من يجاوب غلط 😄</div>`;
+    return `<div class="chal">
+      <div class="chal-head">
+        <div class="chal-ic">🤪</div>
+        <div class="chal-by">
+          <div class="chal-q">${esc(c.title)}</div>
+          <div class="chal-meta">${esc(by.display_name)} · ${timeAgo(c.created_at)} · ${answers.length} إجابة</div>
+        </div>
+        ${del}
+      </div>
+      ${ansHtml}
+      <div class="chal-addans">
+        <input id="ans-in-${c.id}" placeholder="جاوب غلط 😜..." maxlength="160">
+        <button data-ansend="${c.id}">${ICON.send}</button>
+      </div>
+    </div>`;
+  }).join('');
+  $('arena-list').querySelectorAll('[data-vote]').forEach(b=> b.onclick=()=>voteAnswer(+b.dataset.vch, +b.dataset.vote));
+  $('arena-list').querySelectorAll('[data-ansend]').forEach(b=> b.onclick=()=>addAnswer(+b.dataset.ansend));
+  $('arena-list').querySelectorAll('[data-chdel]').forEach(b=> b.onclick=async()=>{ if(confirm('حذف التحدي؟')){ await sb.from('challenges').delete().eq('id',+b.dataset.chdel); loadArena(); }});
+  $('arena-list').querySelectorAll('[data-andel]').forEach(b=> b.onclick=async()=>{ await sb.from('challenge_answers').delete().eq('id',+b.dataset.andel); loadArena(); });
+  list.forEach(c=>{ const inp=$('ans-in-'+c.id); if(inp) inp.onkeydown=e=>{ if(e.key==='Enter'){ e.preventDefault(); addAnswer(c.id); } }; });
+}
+async function addArenaChallenge(){
+  const q = $('ar-q').value.trim(); if(!q){ alert('اكتب السؤال'); return; }
+  const { error } = await sb.from('challenges').insert({ title:q, icon:'🤪', created_by:me.id });
+  if(error){ alert('تعذّر: '+error.message); return; }
+  $('ar-q').value=''; $('arena-form').classList.add('hidden');
+  loadArena();
+}
+async function addAnswer(chId){
+  const inp = $('ans-in-'+chId); if(!inp) return;
+  const txt = inp.value.trim(); if(!txt) return;
+  inp.value='';
+  const { error } = await sb.from('challenge_answers').insert({ challenge_id:chId, author_id:me.id, content:txt });
+  if(error){ alert('تعذّر: '+error.message); return; }
+  loadArena();
+}
+async function voteAnswer(chId, ansId){
+  const { data } = await sb.from('challenge_votes').select('answer_id').eq('challenge_id',chId).eq('voter_id',me.id).maybeSingle();
+  if(data && data.answer_id===ansId){
+    await sb.from('challenge_votes').delete().eq('challenge_id',chId).eq('voter_id',me.id);
+  } else {
+    await sb.from('challenge_votes').upsert({ challenge_id:chId, answer_id:ansId, voter_id:me.id });
+  }
+  loadArena();
+}
+
 // realtime للعائلة
 function subscribeFamilyRealtime(){
   const visHub = ()=> !$('view-hub').classList.contains('hidden');
@@ -2618,6 +2755,9 @@ function subscribeFamilyRealtime(){
     .on('postgres_changes',{event:'*',schema:'public',table:'events'}, ()=>{ if(visHub()) loadEvents(); })
     .on('postgres_changes',{event:'*',schema:'public',table:'list_items'}, ()=>{ if(visHub()) loadList(); })
     .on('postgres_changes',{event:'*',schema:'public',table:'album_photos'}, ()=>{ if(!$('view-album').classList.contains('hidden')) loadAlbum(); })
+    .on('postgres_changes',{event:'*',schema:'public',table:'challenges'}, ()=>{ if(!$('view-arena').classList.contains('hidden')) loadArena(); })
+    .on('postgres_changes',{event:'*',schema:'public',table:'challenge_answers'}, ()=>{ if(!$('view-arena').classList.contains('hidden')) loadArena(); })
+    .on('postgres_changes',{event:'*',schema:'public',table:'challenge_votes'}, ()=>{ if(!$('view-arena').classList.contains('hidden')) loadArena(); })
     .subscribe();
 }
 </script>
