@@ -218,7 +218,7 @@ body::before{content:"";position:fixed;inset:-30%;z-index:-1;
 
 /* أيقونات SVG */
 svg.ic{display:block;stroke-linecap:round;stroke-linejoin:round;}
-.nav-btn svg.ic{width:25px;height:25px;}
+.nav-btn svg.ic{width:23px;height:23px;}
 .iicon svg.ic{width:24px;height:24px;}
 #send-btn svg.ic{width:23px;height:23px;}
 .ch-btn svg.ic{width:22px;height:22px;}
@@ -339,12 +339,15 @@ body.light .bubble.mine .bubble-text{color:#04140C;}
 @keyframes fadeUp{from{opacity:0;transform:translateY(8px) scale(0.98);}to{opacity:1;transform:translateY(0) scale(1);}}
 
 /* ═══ NAV RAIL ═══ */
-#nav-rail{width:72px;flex-shrink:0;background:var(--glass);backdrop-filter:blur(34px) saturate(160%);-webkit-backdrop-filter:blur(34px) saturate(160%);border-left:1px solid var(--stroke);display:flex;flex-direction:column;align-items:center;padding:16px 0;gap:8px;}
-.nav-logo{font-size:30px;margin-bottom:12px;filter:drop-shadow(0 4px 12px var(--accent-glow));}
-.nav-btn{width:48px;height:48px;border:none;background:var(--glass);border:1px solid transparent;border-radius:16px;font-size:22px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.18s;color:#fff;}
+#nav-rail{width:86px;flex-shrink:0;background:var(--glass);backdrop-filter:blur(34px) saturate(160%);-webkit-backdrop-filter:blur(34px) saturate(160%);border-left:1px solid var(--stroke);display:flex;flex-direction:column;align-items:center;padding:14px 0;gap:5px;overflow-y:auto;}
+.nav-logo{font-size:26px;margin-bottom:8px;filter:drop-shadow(0 4px 12px var(--accent-glow));}
+.nav-btn{width:72px;min-height:56px;border:none;background:var(--glass);border:1px solid transparent;border-radius:15px;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:8px 2px;transition:all 0.18s;color:#fff;}
 .nav-btn:hover{background:var(--glass-strong);transform:translateY(-2px);}
 .nav-btn.active{background:linear-gradient(135deg,var(--accent),var(--accent2));box-shadow:0 6px 18px var(--accent-glow);}
-.nav-spacer{flex:1;}
+.nav-label{font-size:10px;font-weight:700;line-height:1;white-space:nowrap;}
+.nav-spacer{flex:1;min-height:6px;}
+#nav-me{display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer;}
+#nav-me .nav-label{color:var(--muted);}
 .view{flex:1;min-width:0;display:flex;}
 .view.hidden{display:none!important;}
 
@@ -954,7 +957,8 @@ const ICON = {
 };
 function paintIcons(){
   const map = { chat:'chat', feed:'home', hub:'calendar', album:'image', arena:'award', ai:'sparkle' };
-  document.querySelectorAll('.nav-btn[data-view]').forEach(b=>{ const k=map[b.dataset.view]; if(k) b.innerHTML = ICON[k]; });
+  const lbl = { chat:'محادثات', feed:'منشورات', hub:'العائلة', album:'الألبوم', arena:'تحديات', ai:'المساعد' };
+  document.querySelectorAll('.nav-btn[data-view]').forEach(b=>{ const k=map[b.dataset.view]; if(k) b.innerHTML = ICON[k] + `<span class="nav-label">${lbl[b.dataset.view]}</span>`; });
   if($('img-btn')) $('img-btn').innerHTML = ICON.image;
   if($('doc-btn')) $('doc-btn').innerHTML = ICON.paperclip;
   if($('loc-btn')) $('loc-btn').innerHTML = ICON.pin;
@@ -1162,7 +1166,7 @@ async function startApp(user){
   $('me-av').innerHTML = avHTML(me, 38);
   $('app-av').innerHTML = grpAvHTML(50);
   showWelcome(me.display_name);
-  $('nav-me').innerHTML = avHTML(me, 42);
+  $('nav-me').innerHTML = avHTML(me, 38) + `<span class="nav-label">ملفي</span>`;
   $('composer-av').innerHTML = avHTML(me, 46);
 
   renderSidebar();
@@ -2282,7 +2286,7 @@ function toggleTheme(){
   localStorage.setItem('theme', document.body.classList.contains('light')?'light':'dark');
   updateThemeBtn();
 }
-function updateThemeBtn(){ const b=$('theme-btn'); if(b) b.innerHTML = document.body.classList.contains('light') ? ICON.moon : ICON.sun; }
+function updateThemeBtn(){ const b=$('theme-btn'); if(b) b.innerHTML = (document.body.classList.contains('light') ? ICON.moon : ICON.sun) + `<span class="nav-label">الوضع</span>`; }
 applyTheme();
 paintIcons();
 
