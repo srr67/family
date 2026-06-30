@@ -521,8 +521,8 @@ body.light .event-form input, body.light .event-form select, body.light .list-ad
 </head>
 <body>
 
-<!-- ══ AUTH SCREEN ══ -->
-<div id="auth">
+<!-- ══ AUTH SCREEN (احتياطي فقط) ══ -->
+<div id="auth" class="hidden">
   <div class="auth-card">
     <div class="auth-logo">👨‍👩‍👧‍👦</div>
     <div class="auth-title">عائلتي</div>
@@ -987,6 +987,8 @@ function translateErr(m){
 }
 
 window.doLogout = async function(){
+  if(!confirm('تبي تبدأ من جديد بحساب آخر؟')) return;
+  localStorage.removeItem('myName');
   await sb.auth.signOut();
   location.reload();
 };
@@ -999,7 +1001,15 @@ sb.auth.onAuthStateChange((_event, session)=>{
 });
 (async()=>{
   const { data:{ session } } = await sb.auth.getSession();
-  if(session && session.user) startApp(session.user);
+  if(session && session.user){ startApp(session.user); return; }
+  // لا توجد جلسة → دخول تلقائي مباشر بدون صفحة تسجيل
+  const { data, error } = await sb.auth.signInAnonymously();
+  if(error || !data || !data.user){
+    // فشل الدخول التلقائي → اعرض شاشة التسجيل الاحتياطية
+    $('auth').classList.remove('hidden');
+    return;
+  }
+  startApp(data.user);
 })();
 
 function showWelcome(name){
@@ -1018,6 +1028,18 @@ async function startApp(user){
     display_name: (user.user_metadata && user.user_metadata.display_name) || (user.email ? user.email.split('@')[0] : 'مستخدم'),
     avatar: (user.user_metadata && user.user_metadata.avatar) || '👤'
   }, { onConflict:'id', ignoreDuplicates:true });
+  // أول دخول: اسأله اسمه مرة وحدة فقط (للترحيب)
+  if(!localStorage.getItem('myName')){
+    let nm = '';
+    try{ nm = (prompt('🌟 حيّاك الله! وش اسمك؟') || '').trim(); }catch(e){}
+    if(nm){
+      await sb.from('profiles').update({ display_name:nm }).eq('id', user.id);
+      try{ await sb.auth.updateUser({ data:{ display_name:nm } }); }catch(e){}
+      localStorage.setItem('myName', nm);
+    } else {
+      localStorage.setItem('myName', '_');
+    }
+  }
   // ensure membership in family group
   await sb.rpc('join_family_group');
   // load my profile
