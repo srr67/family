@@ -500,29 +500,42 @@ body.light .chal-addans input{color:#0E1A14;}
 .lc-name{color:#fff;font-weight:700;font-size:14px;}
 .lc-meta{color:rgba(255,255,255,0.7);font-size:11.5px;margin-top:2px;}
 .live-empty{grid-column:1/-1;text-align:center;color:var(--muted);padding:50px 20px;font-size:15px;line-height:1.9;}
-.ls-box{position:relative;width:440px;max-width:100vw;height:92vh;border-radius:22px;overflow:hidden;background:#000;box-shadow:0 30px 80px rgba(0,0,0,0.7);}
-#ls-video{width:100%;height:100%;object-fit:cover;background:#0a0a0a;}
-.ls-loading{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.7);font-size:15px;z-index:1;}
+.ls-box{position:relative;width:440px;max-width:100vw;height:92vh;border-radius:22px;overflow:hidden;background:#07070c;box-shadow:0 30px 80px rgba(0,0,0,0.7);}
+.ls-grid{position:absolute;inset:0;display:grid;gap:3px;background:#000;}
+.ls-tile{position:relative;overflow:hidden;background:#111;}
+.ls-tile video{width:100%;height:100%;object-fit:cover;background:#111;}
+.ls-tile-ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:linear-gradient(160deg,#163324,#0a1a12);}
+.ls-tile-name{position:absolute;bottom:9px;right:9px;background:rgba(0,0,0,0.5);color:#fff;font-size:11.5px;font-weight:700;padding:3px 10px;border-radius:100px;z-index:2;backdrop-filter:blur(6px);}
+.ls-tile-kick{position:absolute;top:9px;left:9px;background:rgba(255,59,48,0.9);color:#fff;border:none;width:26px;height:26px;border-radius:50%;cursor:pointer;font-size:12px;z-index:3;}
+.ls-scrim{position:absolute;inset:0;pointer-events:none;z-index:1;background:linear-gradient(to bottom,rgba(0,0,0,0.4) 0%,transparent 20%,transparent 52%,rgba(0,0,0,0.6) 100%);}
+.ls-loading{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.7);font-size:15px;z-index:2;}
 .ls-loading.hidden{display:none;}
-.ls-top{position:absolute;top:14px;left:12px;right:12px;display:flex;align-items:center;gap:10px;z-index:4;}
-.ls-host-info{flex:1;min-width:0;}
-#ls-host-name{color:#fff;font-weight:700;font-size:15px;text-shadow:0 1px 4px rgba(0,0,0,0.7);}
-.ls-sub{color:rgba(255,255,255,0.9);font-size:12px;text-shadow:0 1px 3px rgba(0,0,0,0.6);}
-.ls-badge{background:#FF3B30;color:#fff;font-size:11px;font-weight:800;padding:4px 10px;border-radius:100px;}
-.ls-close{background:rgba(0,0,0,0.45);border:none;color:#fff;width:34px;height:34px;border-radius:50%;font-size:16px;cursor:pointer;}
-.ls-chat{position:absolute;bottom:76px;left:12px;right:74px;max-height:42%;overflow-y:auto;display:flex;flex-direction:column;gap:7px;z-index:3;}
-.ls-msg{background:rgba(0,0,0,0.4);border-radius:14px;padding:7px 12px;color:#fff;font-size:13.5px;backdrop-filter:blur(6px);animation:fadeUp 0.25s ease;align-self:flex-start;}
-.ls-msg b{color:var(--accent);font-weight:800;}
-.ls-bottom{position:absolute;bottom:14px;left:12px;right:12px;display:flex;align-items:center;gap:9px;z-index:4;}
-.ls-chat-in{flex:1;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.28);border-radius:100px;padding:12px 17px;color:#fff;outline:none;font-family:inherit;font-size:14px;direction:rtl;backdrop-filter:blur(8px);}
+.ls-top{position:absolute;top:14px;left:12px;right:12px;display:flex;align-items:center;gap:8px;z-index:4;}
+.ls-hostbox{display:flex;align-items:center;gap:9px;background:rgba(0,0,0,0.38);border-radius:100px;padding:5px 13px 5px 6px;backdrop-filter:blur(10px);}
+.ls-host-info{min-width:0;}
+#ls-host-name{color:#fff;font-weight:800;font-size:14px;white-space:nowrap;}
+.ls-sub{color:#FFB23E;font-size:11.5px;font-weight:700;}
+.ls-badge{display:flex;align-items:center;gap:5px;background:#FF3B30;color:#fff;font-size:11px;font-weight:800;padding:5px 11px;border-radius:100px;}
+.ls-badge .dot{width:6px;height:6px;border-radius:50%;background:#fff;animation:recpulse 1s infinite;}
+.ls-vcount{display:flex;align-items:center;gap:5px;background:rgba(0,0,0,0.38);color:#fff;font-size:12.5px;font-weight:700;padding:5px 11px;border-radius:100px;backdrop-filter:blur(10px);margin-right:auto;}
+.ls-vcount svg.ic{width:16px;height:16px;}
+.ls-close{background:rgba(0,0,0,0.42);border:none;color:#fff;width:34px;height:34px;border-radius:50%;font-size:16px;cursor:pointer;backdrop-filter:blur(8px);}
+.ls-chat{position:absolute;bottom:78px;left:12px;right:78px;max-height:38%;overflow-y:auto;display:flex;flex-direction:column;gap:7px;z-index:3;-webkit-mask-image:linear-gradient(to top,#000 78%,transparent);}
+.ls-msg{background:rgba(0,0,0,0.42);border-radius:15px;padding:7px 12px;color:#fff;font-size:13.5px;backdrop-filter:blur(6px);animation:fadeUp 0.25s ease;align-self:flex-start;max-width:100%;}
+.ls-msg b{color:#5BE8A0;font-weight:800;}
+.ls-bottom{position:absolute;bottom:15px;left:12px;right:12px;display:flex;align-items:center;gap:9px;z-index:4;}
+.ls-chat-in{flex:1;min-width:0;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.28);border-radius:100px;padding:12px 18px;color:#fff;outline:none;font-family:inherit;font-size:14px;direction:rtl;backdrop-filter:blur(8px);}
 .ls-chat-in::placeholder{color:rgba(255,255,255,0.75);}
-.ls-support{width:52px;height:52px;border-radius:50%;border:none;background:rgba(255,60,90,0.92);color:#fff;font-size:23px;cursor:pointer;flex-shrink:0;transition:transform 0.1s;box-shadow:0 4px 16px rgba(255,60,90,0.5);}
+.ls-rbtn{width:50px;height:50px;border-radius:50%;border:none;color:#fff;font-size:19px;cursor:pointer;flex-shrink:0;background:rgba(255,255,255,0.16);backdrop-filter:blur(8px);transition:transform 0.1s;}
+.ls-rbtn.end{background:#FF3B30;}
+.ls-rbtn:active{transform:scale(0.92);}
+.ls-rbtn.hidden{display:none;}
+.ls-support{width:52px;height:52px;border-radius:50%;border:none;background:linear-gradient(135deg,#FF5E8A,#FF3B30);color:#fff;font-size:23px;cursor:pointer;flex-shrink:0;transition:transform 0.1s;box-shadow:0 4px 16px rgba(255,60,90,0.5);}
 .ls-support:active{transform:scale(1.35);}
-.ls-end{background:#FF3B30;color:#fff;border:none;border-radius:100px;padding:13px 22px;font-weight:800;cursor:pointer;font-family:inherit;font-size:14px;flex-shrink:0;}
-.ls-end.hidden,.ls-support.hidden{display:none;}
-.ls-hearts{position:absolute;bottom:74px;right:22px;width:60px;height:60%;z-index:3;pointer-events:none;overflow:hidden;}
-.fly-heart{position:absolute;bottom:0;right:0;font-size:26px;animation:fly 3.2s ease-out forwards;}
-@keyframes fly{0%{transform:translateY(0) scale(0.5);opacity:0;}12%{opacity:1;}100%{transform:translateY(-330px) translateX(var(--dx,0)) scale(1.25);opacity:0;}}
+.ls-support.hidden{display:none;}
+.ls-hearts{position:absolute;bottom:76px;right:24px;width:64px;height:62%;z-index:3;pointer-events:none;overflow:hidden;}
+.fly-heart{position:absolute;bottom:0;right:0;font-size:26px;animation:fly 3.4s ease-out forwards;}
+@keyframes fly{0%{transform:translateY(0) scale(0.4);opacity:0;}12%{opacity:1;}100%{transform:translateY(-340px) translateX(var(--dx,0)) scale(1.3) rotate(var(--rot,0));opacity:0;}}
 .list-add{display:flex;gap:8px;margin-bottom:12px;}
 .list-add input{flex:1;background:var(--glass-strong);border:1px solid var(--stroke);border-radius:100px;padding:10px 16px;color:#fff;outline:none;font-family:inherit;direction:rtl;font-size:14px;}
 .list-add button{width:42px;height:42px;background:linear-gradient(135deg,var(--accent),var(--accent2));border:none;border-radius:50%;color:#04140C;font-size:20px;cursor:pointer;flex-shrink:0;}
@@ -887,23 +900,28 @@ body.light .event-form input, body.light .event-form select, body.light .list-ad
 <!-- LIVE STAGE -->
 <div id="live-stage" class="modal hidden">
   <div class="ls-box">
-    <video id="ls-video" autoplay playsinline></video>
+    <div id="ls-grid" class="ls-grid"></div>
     <div id="ls-loading" class="ls-loading">جارٍ الاتصال بالبث...</div>
+    <div class="ls-scrim"></div>
     <div class="ls-hearts" id="ls-hearts"></div>
     <div class="ls-top">
-      <div id="ls-host-av"></div>
-      <div class="ls-host-info">
-        <div id="ls-host-name"></div>
-        <div class="ls-sub"><span id="ls-viewers">0</span> مشاهد · <span id="ls-points">0</span> نقطة</div>
+      <div class="ls-hostbox">
+        <div id="ls-host-av"></div>
+        <div class="ls-host-info">
+          <div id="ls-host-name"></div>
+          <div class="ls-sub"><span id="ls-points">0</span> نقطة</div>
+        </div>
       </div>
-      <span class="ls-badge">● مباشر</span>
+      <span class="ls-badge"><span class="dot"></span> مباشر</span>
+      <span class="ls-vcount"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg><span id="ls-viewers">0</span></span>
       <button id="ls-close" class="ls-close">✕</button>
     </div>
     <div id="ls-chat" class="ls-chat"></div>
     <div class="ls-bottom">
       <input id="ls-chat-in" class="ls-chat-in" placeholder="اكتب تعليق..." maxlength="200">
+      <button id="ls-guest" class="ls-rbtn hidden" title="انضم كضيف">✋</button>
       <button id="ls-support" class="ls-support" title="ادعم بالتكبيس">❤️</button>
-      <button id="ls-end" class="ls-end hidden">إنهاء</button>
+      <button id="ls-end" class="ls-rbtn end hidden" title="إنهاء البث">✕</button>
     </div>
   </div>
 </div>
@@ -2847,14 +2865,18 @@ async function voteAnswer(chId, ansId){
 // ═══════════════════════════════════════════════════════════════════
 //  البث المباشر (Live)
 // ═══════════════════════════════════════════════════════════════════
-let liveMode=null, currentLive=null, liveChannel=null, liveRowChannel=null;
-let liveLocalStream=null, hostPCs={}, viewerPC=null, livePendingIce={};
-let tapAccum=0, tapTimer=null;
+let currentLive=null, liveChannel=null, liveRowChannel=null, liveLocalStream=null;
+let myRole='viewer';                 // host | guest | viewer
+let peers={};                        // peerId -> {pc, polite, makingOffer, ignoreOffer, stream}
+let livePresence={};                 // id -> {role, name}
+let lastPubKey='', tapAccum=0, tapTimer=null;
+const iPublish = ()=> myRole==='host' || myRole==='guest';
 
 function bindLive(){
   $('go-live').onclick = startLive;
-  $('ls-close').onclick = closeStage;
-  $('ls-end').onclick = closeStage;
+  $('ls-close').onclick = ()=> closeStage(false);
+  $('ls-end').onclick = onEndBtn;
+  $('ls-guest').onclick = onGuestBtn;
   $('ls-support').onclick = tapSupport;
   $('ls-chat-in').addEventListener('keydown', e=>{ if(e.key==='Enter'){ e.preventDefault(); sendLiveChat(); } });
 }
@@ -2873,108 +2895,171 @@ function renderLives(list){
   }).join('');
   $('lives-list').querySelectorAll('[data-live]').forEach(c=> c.onclick=()=>{
     const l = list.find(x=>x.id===+c.dataset.live); if(!l) return;
-    if(l.host_id===me.id){ alert('هذا بثك أنت — افتحه من زر «بث الآن»'); return; }
     watchLive(l);
   });
 }
 async function startLive(){
-  let title = '';
-  try{ title = (prompt('عنوان البث (اختياري):')||'').trim(); }catch(e){}
+  let title=''; try{ title=(prompt('عنوان البث (اختياري):')||'').trim(); }catch(e){}
   try{ liveLocalStream = await navigator.mediaDevices.getUserMedia({ video:{facingMode:'user'}, audio:true }); }
-  catch(e){ alert('تعذّر الوصول للكاميرا/المايك — لازم تشغّل عبر localhost أو الموقع'); return; }
+  catch(e){ alert('تعذّر الوصول للكاميرا/المايك'); return; }
   const { data, error } = await sb.from('lives').insert({ host_id:me.id, title:title||null, active:true }).select().single();
   if(error){ alert('تعذّر بدء البث: '+error.message); liveLocalStream.getTracks().forEach(t=>t.stop()); liveLocalStream=null; return; }
-  currentLive = data; liveMode='host';
-  openStage();
-  $('ls-video').srcObject = liveLocalStream; $('ls-video').muted = true;
-  $('ls-loading').classList.add('hidden');
-  setupLiveSignaling();
+  currentLive=data; myRole='host';
+  openStage(); setupLiveSignaling();
 }
 async function watchLive(live){
-  currentLive = live; liveMode='viewer';
-  openStage();
-  setupLiveSignaling();
+  currentLive=live; myRole = live.host_id===me.id ? 'host' : 'viewer';
+  if(myRole==='host'){
+    try{ liveLocalStream = await navigator.mediaDevices.getUserMedia({ video:{facingMode:'user'}, audio:true }); }catch(e){ alert('تعذّر فتح الكاميرا'); return; }
+  }
+  openStage(); setupLiveSignaling();
 }
 function openStage(){
-  hostPCs={}; viewerPC=null; livePendingIce={};
-  const host = liveMode==='host';
-  const hp = host ? me : (profiles[currentLive.host_id] || {display_name:'بث', avatar:'👤'});
-  $('ls-host-av').innerHTML = avHTML(hp,36);
-  $('ls-host-name').textContent = host ? 'بثك المباشر' : hp.display_name;
+  peers={}; livePresence={}; lastPubKey=''; $('ls-grid').innerHTML='';
+  const hp = profiles[currentLive.host_id] || (myRole==='host'?me:{display_name:'بث',avatar:'👤'});
+  $('ls-host-av').innerHTML = avHTML(hp,34);
+  $('ls-host-name').textContent = hp.display_name;
   $('ls-points').textContent = currentLive.points||0;
   $('ls-viewers').textContent = 0;
   $('ls-chat').innerHTML='';
-  $('ls-end').classList.toggle('hidden', !host);
-  $('ls-support').classList.toggle('hidden', host);
-  $('ls-video').srcObject=null; $('ls-video').muted = host;
-  $('ls-loading').classList.toggle('hidden', host);
+  $('ls-loading').classList.toggle('hidden', myRole==='host');
+  updateStageControls();
   $('live-stage').classList.remove('hidden');
   liveRowChannel = sb.channel('liverow:'+currentLive.id)
     .on('postgres_changes',{event:'UPDATE',schema:'public',table:'lives',filter:'id=eq.'+currentLive.id}, p=>{
-      if(p.new){ $('ls-points').textContent=p.new.points||0; if(!p.new.active && liveMode==='viewer'){ alert('انتهى البث 👋'); closeStage(); } }
+      if(p.new){ $('ls-points').textContent=p.new.points||0; if(!p.new.active && myRole!=='host'){ alert('انتهى البث 👋'); closeStage(false); } }
     }).subscribe();
+}
+function updateStageControls(){
+  $('ls-support').classList.toggle('hidden', iPublish());
+  $('ls-guest').classList.toggle('hidden', myRole!=='viewer');
+  $('ls-end').classList.toggle('hidden', !iPublish());
 }
 function setupLiveSignaling(){
   liveChannel = sb.channel('live:'+currentLive.id, { config:{ presence:{ key: me.id }, broadcast:{ self:false } } });
   liveChannel.on('broadcast', {event:'sig'}, ({payload:p})=> handleLiveSig(p));
-  liveChannel.on('presence', {event:'sync'}, ()=>{
-    const ids = Object.keys(liveChannel.presenceState());
-    const viewers = ids.filter(id=> id!==currentLive.host_id).length;
-    $('ls-viewers').textContent = viewers;
-    if(liveMode==='host'){ sb.from('lives').update({ viewers }).eq('id',currentLive.id); }
-  });
-  liveChannel.subscribe(async status=>{
-    if(status==='SUBSCRIBED'){
-      await liveChannel.track({ uid:me.id });
-      if(liveMode==='viewer') sendLive('join', {});
-    }
-  });
+  liveChannel.on('presence', {event:'sync'}, onPresence);
+  liveChannel.subscribe(async status=>{ if(status==='SUBSCRIBED') await liveChannel.track({ uid:me.id, role:myRole, name:me.display_name }); });
 }
-function newLivePC(peerId, isHost){
+function onPresence(){
+  const st = liveChannel.presenceState();
+  livePresence = {};
+  Object.keys(st).forEach(id=>{ const m=st[id][0]||{}; livePresence[id]={ role:m.role||'viewer', name:m.name||'ضيف' }; });
+  const viewers = Object.keys(livePresence).filter(id=> id!==currentLive.host_id).length;
+  $('ls-viewers').textContent = viewers;
+  if(myRole==='host') sb.from('lives').update({ viewers }).eq('id',currentLive.id);
+  // reconcile connections: need PC with any peer where I publish OR peer publishes
+  Object.keys(livePresence).forEach(pid=>{
+    if(pid===me.id) return;
+    const need = iPublish() || ['host','guest'].includes(livePresence[pid].role);
+    if(need && !peers[pid]) connectPeer(pid);
+  });
+  Object.keys(peers).forEach(pid=>{ if(!livePresence[pid]) closePeer(pid); });
+  reconcileTiles();
+}
+function connectPeer(pid){
   const pc = new RTCPeerConnection({ iceServers: ICE_SERVERS });
-  pc.onicecandidate = e=>{ if(e.candidate) sendLive('ice', { to:peerId, candidate:e.candidate }); };
-  if(!isHost){ pc.ontrack = e=>{ $('ls-video').srcObject = e.streams[0]; $('ls-loading').classList.add('hidden'); }; }
-  return pc;
+  const pr = { pc, polite: me.id < pid, makingOffer:false, ignoreOffer:false, stream:null };
+  peers[pid]=pr;
+  pc.onicecandidate = e=>{ if(e.candidate) sendLive('ice',{ to:pid, candidate:e.candidate }); };
+  pc.ontrack = e=>{ pr.stream = e.streams[0]; attachTile(pid); $('ls-loading').classList.add('hidden'); };
+  pc.onnegotiationneeded = async ()=>{
+    try{ pr.makingOffer=true; await pc.setLocalDescription(); sendLive('sdp',{ to:pid, sdp:pc.localDescription }); }
+    catch(e){} finally{ pr.makingOffer=false; }
+  };
+  pc.onconnectionstatechange = ()=>{ if(['failed','closed'].includes(pc.connectionState)) {} };
+  if(iPublish() && liveLocalStream){ liveLocalStream.getTracks().forEach(t=> pc.addTrack(t, liveLocalStream)); }
 }
+function closePeer(pid){ const pr=peers[pid]; if(pr){ try{pr.pc.close();}catch(e){} delete peers[pid]; reconcileTiles(); } }
 async function handleLiveSig(p){
-  if(p.kind==='join' && liveMode==='host'){
-    const vid = p.from; if(hostPCs[vid]) return;
-    const pc = newLivePC(vid, true); hostPCs[vid]=pc;
-    liveLocalStream.getTracks().forEach(t=> pc.addTrack(t, liveLocalStream));
-    const offer = await pc.createOffer(); await pc.setLocalDescription(offer);
-    sendLive('offer', { to:vid, sdp:offer });
-  } else if(p.kind==='offer' && liveMode==='viewer' && p.to===me.id){
-    viewerPC = newLivePC(currentLive.host_id, false);
-    await viewerPC.setRemoteDescription(new RTCSessionDescription(p.sdp));
-    flushLiveIce(currentLive.host_id, viewerPC);
-    const ans = await viewerPC.createAnswer(); await viewerPC.setLocalDescription(ans);
-    sendLive('answer', { to:p.from, sdp:ans });
-  } else if(p.kind==='answer' && liveMode==='host' && p.to===me.id){
-    const pc = hostPCs[p.from]; if(pc){ await pc.setRemoteDescription(new RTCSessionDescription(p.sdp)); flushLiveIce(p.from, pc); }
-  } else if(p.kind==='ice' && p.to===me.id){
-    const pc = liveMode==='host' ? hostPCs[p.from] : viewerPC;
-    if(pc && pc.remoteDescription){ try{ await pc.addIceCandidate(new RTCIceCandidate(p.candidate)); }catch(e){} }
-    else { (livePendingIce[p.from] ||= []).push(p.candidate); }
+  if(p.to && p.to!==me.id && ['sdp','ice','guest_approved','guest_removed'].includes(p.kind)) return;
+  if(p.kind==='sdp'){
+    if(!peers[p.from]) connectPeer(p.from);
+    const pr=peers[p.from], pc=pr.pc, desc=p.sdp;
+    const collision = desc.type==='offer' && (pr.makingOffer || pc.signalingState!=='stable');
+    pr.ignoreOffer = !pr.polite && collision;
+    if(pr.ignoreOffer) return;
+    try{
+      await pc.setRemoteDescription(new RTCSessionDescription(desc));
+      if(desc.type==='offer'){ await pc.setLocalDescription(); sendLive('sdp',{ to:p.from, sdp:pc.localDescription }); }
+    }catch(e){}
+  } else if(p.kind==='ice'){
+    const pr=peers[p.from]; if(pr){ try{ await pr.pc.addIceCandidate(new RTCIceCandidate(p.candidate)); }catch(e){ if(!pr.ignoreOffer){} } }
+  } else if(p.kind==='guest_request' && myRole==='host'){
+    if(confirm(`${p.name||'أحدهم'} يبي ينضم للبث كضيف. تقبل؟`)) sendLive('guest_approved',{ to:p.from });
+  } else if(p.kind==='guest_approved' && myRole==='viewer'){
+    becomeGuest();
+  } else if(p.kind==='guest_removed' && myRole==='guest'){
+    leaveStage();
   } else if(p.kind==='heart'){ flyHeart(); }
   else if(p.kind==='chat'){ addLiveMsg(p.name, p.text); }
 }
-function flushLiveIce(peerId, pc){ (livePendingIce[peerId]||[]).forEach(c=>{ try{ pc.addIceCandidate(new RTCIceCandidate(c)); }catch(e){} }); livePendingIce[peerId]=[]; }
-function sendLive(kind, data){ if(liveChannel) liveChannel.send({ type:'broadcast', event:'sig', payload:{ kind, from:me.id, ...data } }); }
+async function becomeGuest(){
+  try{ liveLocalStream = await navigator.mediaDevices.getUserMedia({ video:{facingMode:'user'}, audio:true }); }
+  catch(e){ alert('تعذّر فتح الكاميرا'); return; }
+  myRole='guest';
+  Object.values(peers).forEach(pr=>{ liveLocalStream.getTracks().forEach(t=> pr.pc.addTrack(t, liveLocalStream)); });
+  await liveChannel.track({ uid:me.id, role:'guest', name:me.display_name });
+  updateStageControls();
+  onPresence();
+}
+function leaveStage(){
+  if(liveLocalStream){ liveLocalStream.getTracks().forEach(t=>t.stop()); liveLocalStream=null; }
+  myRole='viewer';
+  // أعد بناء الاتصالات كمشاهد
+  Object.keys(peers).forEach(closePeer);
+  liveChannel.track({ uid:me.id, role:'viewer', name:me.display_name });
+  updateStageControls();
+  onPresence();
+}
+function onEndBtn(){ if(myRole==='host') closeStage(true); else if(myRole==='guest') leaveStage(); }
+function onGuestBtn(){
+  if(myRole!=='viewer') return;
+  sendLive('guest_request', { name:me.display_name });
+  $('ls-guest').classList.add('hidden');
+  addLiveMsg('النظام', 'تم إرسال طلب الانضمام للمضيف...');
+}
+let tilesKeyForce=0;
+function reconcileTiles(){
+  const pubs = Object.keys(livePresence).filter(id=> ['host','guest'].includes(livePresence[id].role));
+  if(iPublish() && !pubs.includes(me.id)) pubs.push(me.id);
+  const key = pubs.slice().sort().join(',');
+  const grid=$('ls-grid');
+  if(key!==lastPubKey){
+    lastPubKey=key;
+    const n=pubs.length||1;
+    grid.style.gridTemplateColumns = n<=2 ? '1fr' : '1fr 1fr';
+    grid.style.gridTemplateRows = n<=1 ? '1fr' : (n<=2 ? '1fr 1fr' : '1fr 1fr');
+    grid.innerHTML = pubs.map(id=>{
+      const m=livePresence[id]||{name:(id===me.id?me.display_name:'بث')};
+      const nm = id===me.id ? me.display_name : (m.name||'');
+      const kick = (myRole==='host' && id!==me.id) ? `<button class="ls-tile-kick" data-kick="${id}">✕</button>` : '';
+      return `<div class="ls-tile" id="tile-${id}"><video autoplay playsinline ${id===me.id?'muted':''}></video><span class="ls-tile-name">${esc(nm)}</span>${kick}</div>`;
+    }).join('');
+    grid.querySelectorAll('[data-kick]').forEach(b=> b.onclick=()=>{ if(confirm('إخراج الضيف من البث؟')) sendLive('guest_removed',{ to:b.dataset.kick }); });
+  }
+  pubs.forEach(attachTile);
+}
+function attachTile(id){
+  const t=$('tile-'+id); if(!t) return; const v=t.querySelector('video'); if(!v) return;
+  const stream = id===me.id ? liveLocalStream : (peers[id] && peers[id].stream);
+  if(stream && v.srcObject!==stream) v.srcObject = stream;
+}
+function sendLive(kind, data){ if(liveChannel) liveChannel.send({ type:'broadcast', event:'sig', payload:{ kind, from:me.id, ...(data||{}) } }); }
 function tapSupport(){
   flyHeart(); sendLive('heart', {});
   tapAccum++; clearTimeout(tapTimer);
-  tapTimer = setTimeout(()=>{ const n=tapAccum; tapAccum=0; if(n>0) sb.rpc('add_live_points',{ _live:currentLive.id, _n:n }); }, 800);
+  tapTimer = setTimeout(()=>{ const n=tapAccum; tapAccum=0; if(n>0 && currentLive) sb.rpc('add_live_points',{ _live:currentLive.id, _n:n }); }, 800);
 }
 function flyHeart(){
   const h=document.createElement('div'); h.className='fly-heart'; h.textContent='❤️';
-  h.style.setProperty('--dx', (Math.random()*40-20)+'px');
-  $('ls-hearts').appendChild(h);
-  setTimeout(()=> h.remove(), 3300);
+  h.style.setProperty('--dx', (Math.random()*46-23)+'px');
+  h.style.setProperty('--rot', (Math.random()*40-20)+'deg');
+  $('ls-hearts').appendChild(h); setTimeout(()=> h.remove(), 3500);
 }
 function sendLiveChat(){
   const inp=$('ls-chat-in'); const t=inp.value.trim(); if(!t) return; inp.value='';
-  addLiveMsg(me.display_name, t);
-  sendLive('chat', { name:me.display_name, text:t });
+  addLiveMsg(me.display_name, t); sendLive('chat', { name:me.display_name, text:t });
 }
 function addLiveMsg(name, text){
   const el=$('ls-chat');
@@ -2982,16 +3067,15 @@ function addLiveMsg(name, text){
   el.scrollTop = el.scrollHeight;
   while(el.children.length>40) el.firstChild.remove();
 }
-async function closeStage(){
-  if(liveMode==='host' && currentLive){ try{ await sb.from('lives').update({ active:false, ended_at:new Date().toISOString() }).eq('id',currentLive.id); }catch(e){} }
-  Object.values(hostPCs).forEach(pc=>{ try{pc.close();}catch(e){} }); hostPCs={};
-  if(viewerPC){ try{viewerPC.close();}catch(e){} viewerPC=null; }
+async function closeStage(endBroadcast){
+  if(myRole==='host' && currentLive){ try{ await sb.from('lives').update({ active:false, ended_at:new Date().toISOString() }).eq('id',currentLive.id); }catch(e){} }
+  Object.values(peers).forEach(pr=>{ try{pr.pc.close();}catch(e){} }); peers={};
   if(liveLocalStream){ liveLocalStream.getTracks().forEach(t=>t.stop()); liveLocalStream=null; }
   if(liveChannel){ sb.removeChannel(liveChannel); liveChannel=null; }
   if(liveRowChannel){ sb.removeChannel(liveRowChannel); liveRowChannel=null; }
-  $('ls-video').srcObject=null;
+  $('ls-grid').innerHTML='';
   $('live-stage').classList.add('hidden');
-  liveMode=null; currentLive=null;
+  myRole='viewer'; currentLive=null;
   loadLives();
 }
 
